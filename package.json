@@ -1,0 +1,15 @@
+{
+  "name": "Neon-MVC",
+  "description": "Neon MVC stack for web apps",
+  "repository": "http://google.com",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.10.33"
+  },
+  "dependencies": {
+    "express": "~4.8.2",
+    "glob": "^4.3.2",
+    "neon": "~2.0.0",
+    "socket.io": "~1.0.6"
+  }
+}

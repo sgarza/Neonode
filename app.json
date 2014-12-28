@@ -1,0 +1,7 @@
+{
+  "name": "Neon-MVC",
+  "description": "Neon MVC stack for web apps",
+  "repository": "http://google.com",
+  "logo": "",
+  "keywords": ["node", "express", "static", "mvc"]
+}
