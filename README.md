@@ -1,6 +1,6 @@
-# Neon MVC
+# Neonode MVC
 
-[neon.js](http://azendal.github.io/neon/) powered full stack web app platform.
+[neon.js](http://azendal.github.io/neon/) powered full stack MVC web app platform.
 
 Based on [Neon Bootstrap by @escusado](http://github.com/escusado/neon-bootstrap)
 
