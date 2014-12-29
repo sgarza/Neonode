@@ -7,6 +7,7 @@
     "node": "0.10.33"
   },
   "dependencies": {
+    "connect-busboy": "0.0.2",
     "express": "~4.8.2",
     "glob": "^4.3.2",
     "inflection": "^1.5.3",
