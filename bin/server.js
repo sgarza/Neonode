@@ -4,24 +4,26 @@
 var serverPort = process.env.PORT || 3000;
 
 //Dependencies
-var express = require('express'),
-    http    = require('http'),
-    app     = express(),
-    server  = http.createServer(app),
-    io      = require('socket.io').listen(server),
-    fs      = require('fs'),
-    glob    = require("glob");
+var express     = require('express'),
+    http        = require('http'),
+    app         = express(),
+    server      = http.createServer(app),
+    io          = require('socket.io').listen(server),
+    fs          = require('fs'),
+    glob        = require('glob'),
+    inflection  = require('inflection');
 
 require('neon');
 
 //Application
-Class('Server')({
+Class('Application')({
   prototype : {
+    inflection : inflection,
+
     init : function (){
-      this._configureApp();
-      this._loadControllers();
-      this._setupSockets();
-      this._serverStart();
+      this._configureApp()
+        ._setupSockets()
+        ._serverStart();
 
       return this;
     },
@@ -43,30 +45,14 @@ Class('Server')({
       return this;
     },
 
-    _loadControllers : function(){
-      global.router = express.Router();
-
-      require('../lib/RestfulController.js');
-
-      var route;
-
-      glob.sync("controllers/*.js").forEach(function(file) {
-        console.log('Loading ' + file + '...')
-        route = require('../' + file);
-      });
-
-
-      app.use(router);
-
-      return this;
-    },
-
     _setupSockets : function(){
       var server = this;
 
       io.sockets.on('connection', function (socket) {
         socket.on('client:hello', server._clientHello.bind(this, socket));
       });
+
+      return this;
     },
 
     _clientHello : function(socket, data){
@@ -78,9 +64,29 @@ Class('Server')({
       console.log('Server ready');
       console.log('http://localhost:'+serverPort.toString());
       server.listen(serverPort);
+    },
+
+    loadControllers : function(){
+      global.router = express.Router();
+
+      require('../lib/RestfulController.js');
+
+      var route;
+
+      glob.sync("controllers/*.js").forEach(function(file) {
+        console.log('Loading ' + file + '...')
+        require('../' + file);
+      });
+
+
+      app.use(router);
+
+      return this;
     }
   }
 });
 
 //Startup
-var server = new Server();
+global.application = new Application();
+
+application.loadControllers();
