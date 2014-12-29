@@ -1,4 +1,4 @@
-# Neonode MVC
+# Neonode
 
 [neon.js](http://azendal.github.io/neon/) powered full stack MVC web app platform.
 

@@ -1,7 +1,7 @@
 {
-  "name": "Neon-MVC",
-  "description": "Neon MVC stack for web apps",
-  "repository": "http://google.com",
+  "name": "Neonode",
+  "description": "Neon.js / NodeJS MVC stack for web apps",
+  "repository": "https://github.com/sgarza/Neonode",
   "logo": "",
   "keywords": ["node", "express", "static", "mvc"]
 }
