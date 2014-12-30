@@ -16,7 +16,8 @@ var express       = require('express'),
     cookieParser  = require('cookie-parser'),
     session       = require('express-session'),
     csrf          = require('csurf'),
-    morgan        = require('morgan'); // http request logger middleware
+    morgan        = require('morgan'),
+    logger        = require("../lib/logger"); // http request logger middleware
 
 require('neon');
 
@@ -26,9 +27,32 @@ Class('Application')({
     inflection : inflection,
 
     init : function (){
-      this._configureApp()
+      logger.info("Initializing Application");
+      this._banner()
+        ._configureApp()
         ._setupSockets()
         ._serverStart();
+
+      logger.info("Application Initialized");
+
+      return this;
+    },
+
+    _banner : function() {
+      logger.info("#  ███╗   ██╗███████╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗ ███████╗");
+      logger.info("#  ████╗  ██║██╔════╝██╔═══██╗████╗  ██║██╔═══██╗██╔══██╗██╔════╝");
+      logger.info("#  ██╔██╗ ██║█████╗  ██║   ██║██╔██╗ ██║██║   ██║██║  ██║█████╗  ");
+      logger.info("#  ██║╚██╗██║██╔══╝  ██║   ██║██║╚██╗██║██║   ██║██║  ██║██╔══╝  ");
+      logger.info("#  ██║ ╚████║███████╗╚██████╔╝██║ ╚████║╚██████╔╝██████╔╝███████╗");
+      logger.info("#  ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝");
+      logger.info("#                                                                ");
+      logger.info("#  ██╗   ██╗ ██████╗     ██████╗    ██╗                          ");
+      logger.info("#  ██║   ██║██╔═████╗   ██╔═████╗  ███║                          ");
+      logger.info("#  ██║   ██║██║██╔██║   ██║██╔██║  ╚██║                          ");
+      logger.info("#  ╚██╗ ██╔╝████╔╝██║   ████╔╝██║   ██║                          ");
+      logger.info("#   ╚████╔╝ ╚██████╔╝██╗╚██████╔╝██╗██║                          ");
+      logger.info("#    ╚═══╝   ╚═════╝ ╚═╝ ╚═════╝ ╚═╝╚═╝                          ");
+      logger.info("#                                                                ");
 
       return this;
     },
@@ -48,19 +72,26 @@ Class('Application')({
       app.use('/public', express.static('public'));
 
       // MiddleWares
+      logger.debug("Setting up middlewares...");
+
+      logger.debug("Setting busboy");
       app.use(busboy());
 
+      logger.debug("Setting cookieParser");
       app.use(cookieParser());
 
+      logger.debug("Setting session");
       app.use(session({
         secret: 'APP SECRET : CHANGE THIS',
         resave: false,
         saveUninitialized: true
       }));
 
+      logger.debug("Setting csrf");
       app.use(csrf());
 
       // error handler middleware for CSRF
+      logger.debug("Setting error handler for CSRF");
       app.use(function (err, req, res, next) {
         if (err.code !== 'EBADCSRFTOKEN') return next(err)
 
@@ -70,8 +101,7 @@ Class('Application')({
       });
 
       // App Logging
-      var accessLogStream = fs.createWriteStream('log/access.log', {flags: 'a'});
-      app.use(morgan('combined', {stream: accessLogStream}));
+      app.use(morgan('combined' ,{stream: logger.stream}));
 
       return this;
     },
@@ -92,8 +122,6 @@ Class('Application')({
     },
 
     _serverStart : function(){
-      console.log('Server ready');
-      console.log('http://localhost:'+serverPort.toString());
       server.listen(serverPort);
     },
 
@@ -105,7 +133,7 @@ Class('Application')({
       var route;
 
       glob.sync("controllers/*.js").forEach(function(file) {
-        console.log('Loading ' + file + '...')
+        logger.info('Loading ' + file + '...')
         require('../' + file);
       });
 
@@ -121,3 +149,6 @@ Class('Application')({
 global.application = new Application();
 
 application.loadControllers();
+
+logger.info('Neonode server ready');
+logger.info("Listening on port: " + serverPort.toString());

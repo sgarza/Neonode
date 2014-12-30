@@ -16,6 +16,7 @@
     "inflection": "^1.5.3",
     "morgan": "^1.5.0",
     "neon": "~2.0.0",
-    "socket.io": "~1.0.6"
+    "socket.io": "~1.0.6",
+    "winston": "^0.8.3"
   }
 }
