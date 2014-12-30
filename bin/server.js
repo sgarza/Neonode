@@ -13,7 +13,8 @@ var express       = require('express'),
     glob          = require('glob'),
     inflection    = require('inflection'),
     busboy        = require('connect-busboy'), // A streaming parser for HTML
-    cookieParser  = require('cookie-parser');
+    cookieParser  = require('cookie-parser'),
+    session       = require('express-session');
 
 require('neon');
 
@@ -47,6 +48,11 @@ Class('Application')({
       // MiddleWares
       app.use(busboy());
       app.use(cookieParser());
+      app.use(session({
+        secret: 'APP SECRET : CHANGE THIS',
+        resave: false,
+        saveUninitialized: true
+      }));
 
       return this;
     },
