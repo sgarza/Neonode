@@ -15,7 +15,8 @@ var express       = require('express'),
     busboy        = require('connect-busboy'), // A streaming parser for HTML
     cookieParser  = require('cookie-parser'),
     session       = require('express-session'),
-    csrf          = require('csurf');
+    csrf          = require('csurf'),
+    morgan        = require('morgan'); // http request logger middleware
 
 require('neon');
 
@@ -67,6 +68,10 @@ Class('Application')({
         res.status(403)
         res.send('session has expired or form tampered with')
       });
+
+      // App Logging
+      var accessLogStream = fs.createWriteStream('log/access.log', {flags: 'a'});
+      app.use(morgan('combined', {stream: accessLogStream}));
 
       return this;
     },
