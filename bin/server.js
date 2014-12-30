@@ -14,7 +14,8 @@ var express       = require('express'),
     inflection    = require('inflection'),
     busboy        = require('connect-busboy'), // A streaming parser for HTML
     cookieParser  = require('cookie-parser'),
-    session       = require('express-session');
+    session       = require('express-session'),
+    csrf          = require('csurf');
 
 require('neon');
 
@@ -47,12 +48,25 @@ Class('Application')({
 
       // MiddleWares
       app.use(busboy());
+
       app.use(cookieParser());
+
       app.use(session({
         secret: 'APP SECRET : CHANGE THIS',
         resave: false,
         saveUninitialized: true
       }));
+
+      app.use(csrf());
+
+      // error handler middleware for CSRF
+      app.use(function (err, req, res, next) {
+        if (err.code !== 'EBADCSRFTOKEN') return next(err)
+
+        // handle CSRF token errors here
+        res.status(403)
+        res.send('session has expired or form tampered with')
+      });
 
       return this;
     },
