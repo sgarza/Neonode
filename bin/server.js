@@ -4,14 +4,16 @@
 var serverPort = process.env.PORT || 3000;
 
 //Dependencies
-var express     = require('express'),
-    http        = require('http'),
-    app         = express(),
-    server      = http.createServer(app),
-    io          = require('socket.io').listen(server),
-    fs          = require('fs'),
-    glob        = require('glob'),
-    inflection  = require('inflection');
+var express       = require('express'),
+    http          = require('http'),
+    app           = express(),
+    server        = http.createServer(app),
+    io            = require('socket.io').listen(server),
+    fs            = require('fs'),
+    glob          = require('glob'),
+    inflection    = require('inflection'),
+    busboy        = require('connect-busboy'), // A streaming parser for HTML
+    cookieParser  = require('cookie-parser');
 
 require('neon');
 
@@ -41,6 +43,10 @@ Class('Application')({
 
       //Static routes
       app.use('/public', express.static('public'));
+
+      // MiddleWares
+      app.use(busboy());
+      app.use(cookieParser());
 
       return this;
     },
