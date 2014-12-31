@@ -1,5 +1,9 @@
+#osx
+.DS_Store
+.AppleDouble
+.LSOverride
+
 # Logs
-logs
 *.log
 
 # Runtime data
