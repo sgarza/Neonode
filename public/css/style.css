@@ -1,5 +1,13 @@
 body{
-    font-family: Tahoma, Geneva, sans-serif;
-    color: #FFFFFF;
-    background-color: #FF0C17;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    color: #333;
+    padding : 10px;
 }
+
+.wrapper .fixed {
+  padding : 0 10px 0 0;
+}
+
+  .wrapper .fixed img {
+    width : 80px;
+  }

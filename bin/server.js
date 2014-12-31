@@ -16,8 +16,9 @@ var express       = require('express'),
     cookieParser  = require('cookie-parser'),
     session       = require('express-session'),
     csrf          = require('csurf'),
-    morgan        = require('morgan'),
-    logger        = require("../lib/logger"); // http request logger middleware
+    morgan        = require('morgan'), // http request logger middleware
+    logger        = require("../lib/logger"),
+    ejsMate       = require('ejs-mate');
 
 require('neon');
 
@@ -58,6 +59,14 @@ Class('Application')({
     },
 
     _configureApp : function(){
+      // App Logging
+      app.use(morgan('combined' ,{stream: logger.stream}));
+
+      app.engine('ejs', ejsMate);
+
+      app.set('views', 'views');
+      app.set('view engine', 'ejs');
+
       //neon
       app.use('/neon', express.static('node_modules/neon'));
 
@@ -99,9 +108,6 @@ Class('Application')({
         res.status(403)
         res.send('session has expired or form tampered with')
       });
-
-      // App Logging
-      app.use(morgan('combined' ,{stream: logger.stream}));
 
       return this;
     },

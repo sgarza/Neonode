@@ -11,7 +11,8 @@ var HomeController = Class('HomeController')({
     },
 
     index : function(req, res) {
-      res.sendFile('views/index.html', {'root': __dirname + '/..'});
+      // res.sendFile('views/index.html', {'root': __dirname + '/..'});
+      res.render('home/index.ejs');
     }
   }
 });

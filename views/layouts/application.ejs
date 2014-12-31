@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Neon Bootstrap</title>
+    <title>Neonode</title>
     <link rel="icon" type="image/gif" href="/public/img/favicon.gif" />
 
     <!-- css -->
@@ -29,12 +29,25 @@
 </head>
 
 <body>
-    <div class="unit wrapper">
-        <img src="/public/img/neon-logo.png" alt="">
-        <h1>Neon MVC</h1>
-        <h2>v0.0.1</h2>
+    <div class="unit 2-columns wrapper">
+      <div class="column fixed">
+        <div class="container">
+          <img src="/public/img/neon-logo.png" alt="" />
+        </div>
+      </div>
+      <div class="column elastic">
+        <div class="container">
+          <h1>Neonode</h1>
+          <h2>v0.0.1</h2>
+        </div>
+      </div>
     </div>
-
+    <hr />
+    <div class="unit">
+      <div class="container">
+        <%- body -%>
+      </div>
+    </div>
 
 
 </body>
