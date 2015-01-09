@@ -11,7 +11,7 @@ var HomeController = Class('HomeController')({
     },
 
     index : function(req, res) {
-      res.render('home/index.ejs');
+      res.render('home/index.html', {posts : ["1", "2", "3", "4", "5"]});
     }
   }
 });

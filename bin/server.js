@@ -17,10 +17,11 @@ var express       = require('express'),
     session       = require('express-session'),
     csrf          = require('csurf'),
     morgan        = require('morgan'), // http request logger middleware
-    logger        = require("../lib/logger"),
-    ejsMate       = require('ejs-mate');
+    logger        = require("../lib/logger");
 
 require('neon');
+
+require('Thulium'); // Ultra fast templating engine. See https://github.com/escusado/thulium
 
 //Application
 Class('Application')({
@@ -62,10 +63,39 @@ Class('Application')({
       // App Logging
       app.use(morgan('combined' ,{stream: logger.stream}));
 
-      app.engine('ejs', ejsMate);
+      // Setup Thulium engine for ExpressJS
+      app.engine('html', function(path, options, callback){
+        var fileCache = {};
+
+        var key = path + ':thulium:string';
+
+        if ('function' == typeof options) {
+          callback = options, options = {};
+        }
+
+        options.filename = path;
+
+        var str;
+
+        try {
+          str = options.cache
+            ? fileCache[key] || (fileCache[key] = fs.readFileSync(path, 'utf8'))
+            : fs.readFileSync(path, 'utf8');
+        } catch (err) {
+          fs.readFileSync(err);
+          return;
+        }
+
+        var tm = new Thulium({
+          template : str
+        });
+
+        var rendered = tm.parseSync().renderSync(options);
+
+        callback(null, rendered);
+      });
 
       app.set('views', 'views');
-      app.set('view engine', 'ejs');
 
       //neon
       app.use('/neon', express.static('node_modules/neon'));
