@@ -1,4 +1,4 @@
-#! /usr/local/bin/node
+#!/usr/bin/env node
 
 //Config
 var serverPort = process.env.PORT || 3000;
