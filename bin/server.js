@@ -19,19 +19,22 @@ global.logger = require('../lib/logger');
 //Application
 Class('Application')({
   prototype : {
-    express       : require('express'),
-    http          : require('http'),
-    app           : null,
-    server        : null,
-    io            : null,
-    fs            : fs,
-    glob          : require('glob'),
-    inflection    : require('inflection'),
-    busboy        : require('connect-busboy'),
-    cookieParser  : require('cookie-parser'),
-    session       : require('express-session'),
-    csrf          : require('csurf'),
-    morgan        : require('morgan'),
+    express           : require('express'),
+    http              : require('http'),
+    app               : null,
+    server            : null,
+    io                : null,
+    fs                : fs,
+    glob              : require('glob'),
+    inflection        : require('inflection'),
+    busboy            : require('connect-busboy'),
+    cookieParser      : require('cookie-parser'),
+    session           : require('express-session'),
+    csrf              : require('csurf'),
+    morgan            : require('morgan'),
+    this.router       : null,
+    this.controllers  : [].
+    this.models       : [],
 
     init : function (){
       logger.log("Initializing Application");
@@ -162,7 +165,7 @@ Class('Application')({
     loadControllers : function(){
       var application = this;
 
-      global.router = this.express.Router();
+      this.router = this.express.Router();
 
       require('../lib/RestfulController.js');
 
@@ -170,11 +173,11 @@ Class('Application')({
 
       this.glob.sync("controllers/*.js").forEach(function(file) {
         logger.log('Loading ' + file + '...')
-        require('../' + file);
+        var controller = require('../' + file);
+        application.controllers.push(controller);
       });
 
-
-      this.app.use(router);
+      this.app.use(this.router);
 
       return this;
     }
