@@ -4,9 +4,15 @@
 var serverPort = process.env.PORT || 3000;
 
 //Dependencies
+
+var fs = require('fs');
 require('neon');
 require('Thulium'); // Ultra fast templating engine. See https://github.com/escusado/thulium
 require('argonjs'); // Async ActiveRecord for ECMAScript https://github.com/azendal/argon
+
+if (!fs.existsSync('./log')) {
+    fs.mkdirSync('./log', 0744);
+}
 
 global.logger = require('../lib/logger');
 
@@ -18,7 +24,7 @@ Class('Application')({
     app           : null,
     server        : null,
     io            : null,
-    fs            : require('fs'),
+    fs            : fs,
     glob          : require('glob'),
     inflection    : require('inflection'),
     busboy        : require('connect-busboy'),
