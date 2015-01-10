@@ -32,18 +32,18 @@ Class('Application')({
     session           : require('express-session'),
     csrf              : require('csurf'),
     morgan            : require('morgan'),
-    this.router       : null,
-    this.controllers  : [].
-    this.models       : [],
+    router            : null,
+    controllers       : [],
+    models            : [],
 
     init : function (){
-      logger.log("Initializing Application");
+      logger.info("Initializing Application");
 
       this._configureApp()
         ._setupSockets()
         ._serverStart();
 
-      logger.log("Application Initialized");
+      logger.info("Application Initialized");
 
       return this;
     },
@@ -172,7 +172,7 @@ Class('Application')({
       var route;
 
       this.glob.sync("controllers/*.js").forEach(function(file) {
-        logger.log('Loading ' + file + '...')
+        logger.info('Loading ' + file + '...')
         var controller = require('../' + file);
         application.controllers.push(controller);
       });
@@ -189,5 +189,5 @@ global.application = new Application();
 
 application.loadControllers();
 
-logger.log('Neonode server ready');
-logger.log("Listening on port: " + serverPort.toString());
+logger.info('Neonode server ready');
+logger.info("Listening on port: " + serverPort.toString());

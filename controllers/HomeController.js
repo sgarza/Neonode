@@ -6,7 +6,7 @@ var HomeController = Class('HomeController')({
     },
 
     _initRouter : function() {
-      router.route('/')
+      application.router.route('/')
         .get(this.index);
     },
 
