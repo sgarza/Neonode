@@ -4,34 +4,33 @@
 var serverPort = process.env.PORT || 3000;
 
 //Dependencies
-var express       = require('express'),
-    http          = require('http'),
-    app           = express(),
-    server        = http.createServer(app),
-    io            = require('socket.io').listen(server),
-    fs            = require('fs'),
-    glob          = require('glob'),
-    inflection    = require('inflection'),
-    busboy        = require('connect-busboy'), // A streaming parser for HTML
-    cookieParser  = require('cookie-parser'),
-    session       = require('express-session'),
-    csrf          = require('csurf'),
-    morgan        = require('morgan'), // http request logger middleware
-    logger        = require("../lib/logger");
-
 require('neon');
-
 require('Thulium'); // Ultra fast templating engine. See https://github.com/escusado/thulium
+require('argonjs'); // Async ActiveRecord for ECMAScript https://github.com/azendal/argon
+
+global.logger = require('../lib/logger');
 
 //Application
 Class('Application')({
   prototype : {
-    inflection : inflection,
+    express       : require('express'),
+    http          : require('http'),
+    app           : null,
+    server        : null,
+    io            : null,
+    fs            : require('fs'),
+    glob          : require('glob'),
+    inflection    : require('inflection'),
+    busboy        : require('connect-busboy'),
+    cookieParser  : require('cookie-parser'),
+    session       : require('express-session'),
+    csrf          : require('csurf'),
+    morgan        : require('morgan'),
 
     init : function (){
       logger.log("Initializing Application");
-      this._banner()
-        ._configureApp()
+
+      this._configureApp()
         ._setupSockets()
         ._serverStart();
 
@@ -40,31 +39,17 @@ Class('Application')({
       return this;
     },
 
-    _banner : function() {
-      logger.log("#  ███╗   ██╗███████╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗ ███████╗");
-      logger.log("#  ████╗  ██║██╔════╝██╔═══██╗████╗  ██║██╔═══██╗██╔══██╗██╔════╝");
-      logger.log("#  ██╔██╗ ██║█████╗  ██║   ██║██╔██╗ ██║██║   ██║██║  ██║█████╗  ");
-      logger.log("#  ██║╚██╗██║██╔══╝  ██║   ██║██║╚██╗██║██║   ██║██║  ██║██╔══╝  ");
-      logger.log("#  ██║ ╚████║███████╗╚██████╔╝██║ ╚████║╚██████╔╝██████╔╝███████╗");
-      logger.log("#  ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝");
-      logger.log("#                                                                ");
-      logger.log("#  ██╗   ██╗ ██████╗     ██████╗    ██╗                          ");
-      logger.log("#  ██║   ██║██╔═████╗   ██╔═████╗  ███║                          ");
-      logger.log("#  ██║   ██║██║██╔██║   ██║██╔██║  ╚██║                          ");
-      logger.log("#  ╚██╗ ██╔╝████╔╝██║   ████╔╝██║   ██║                          ");
-      logger.log("#   ╚████╔╝ ╚██████╔╝██╗╚██████╔╝██╗██║                          ");
-      logger.log("#    ╚═══╝   ╚═════╝ ╚═╝ ╚═════╝ ╚═╝╚═╝                          ");
-      logger.log("#                                                                ");
-
-      return this;
-    },
-
     _configureApp : function(){
+      var application = this;
+
+      this.app = this.express();
+      this.server = this.http.createServer(this.app);
+
       // App Logging
-      app.use(morgan('combined' ,{stream: logger.stream}));
+      this.app.use(this.morgan('combined' ,{stream: logger.stream}));
 
       // Setup Thulium engine for ExpressJS
-      app.engine('html', function(path, options, callback){
+      this.app.engine('html', function(path, options, callback){
         var fileCache = {};
 
         var key = path + ':thulium:string';
@@ -79,10 +64,10 @@ Class('Application')({
 
         try {
           str = options.cache
-            ? fileCache[key] || (fileCache[key] = fs.readFileSync(path, 'utf8'))
-            : fs.readFileSync(path, 'utf8');
+            ? fileCache[key] || (fileCache[key] = this.fs.readFileSync(path, 'utf8'))
+            : this.fs.readFileSync(path, 'utf8');
         } catch (err) {
-          fs.readFileSync(err);
+          this.fs.readFileSync(err);
           return;
         }
 
@@ -95,43 +80,43 @@ Class('Application')({
         callback(null, rendered);
       });
 
-      app.set('views', 'views');
+      this.app.set('views', 'views');
 
       //neon
-      app.use('/neon', express.static('node_modules/neon'));
+      this.app.use('/neon', this.express.static('node_modules/neon'));
 
       //CORS
-      app.use(function (req, res, next) {
+      this.app.use(function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
         next();
       });
 
       //Static routes
-      app.use('/public', express.static('public'));
+      this.app.use('/public', this.express.static('public'));
 
       // MiddleWares
       logger.debug("Setting up middlewares...");
 
       logger.debug("Setting busboy");
-      app.use(busboy());
+      this.app.use(this.busboy());
 
       logger.debug("Setting cookieParser");
-      app.use(cookieParser());
+      this.app.use(this.cookieParser());
 
       logger.debug("Setting session");
-      app.use(session({
+      this.app.use(this.session({
         secret: 'APP SECRET : CHANGE THIS',
         resave: false,
         saveUninitialized: true
       }));
 
       logger.debug("Setting csrf");
-      app.use(csrf());
+      this.app.use(this.csrf());
 
       // error handler middleware for CSRF
       logger.debug("Setting error handler for CSRF");
-      app.use(function (err, req, res, next) {
+      this.app.use(function (err, req, res, next) {
         if (err.code !== 'EBADCSRFTOKEN') return next(err)
 
         // handle CSRF token errors here
@@ -143,10 +128,12 @@ Class('Application')({
     },
 
     _setupSockets : function(){
-      var server = this;
+      var application = this;
 
-      io.sockets.on('connection', function (socket) {
-        socket.on('client:hello', server._clientHello.bind(this, socket));
+      this.io = require('socket.io').listen(this.server);
+
+      this.io.sockets.on('connection', function (socket) {
+        socket.on('client:hello', application._clientHello.bind(this, socket));
       });
 
       return this;
@@ -158,23 +145,25 @@ Class('Application')({
     },
 
     _serverStart : function(){
-      server.listen(serverPort);
+      this.server.listen(serverPort);
     },
 
     loadControllers : function(){
-      global.router = express.Router();
+      var application = this;
+
+      global.router = this.express.Router();
 
       require('../lib/RestfulController.js');
 
       var route;
 
-      glob.sync("controllers/*.js").forEach(function(file) {
+      this.glob.sync("controllers/*.js").forEach(function(file) {
         logger.log('Loading ' + file + '...')
         require('../' + file);
       });
 
 
-      app.use(router);
+      this.app.use(router);
 
       return this;
     }
