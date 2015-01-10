@@ -29,32 +29,32 @@ Class('Application')({
     inflection : inflection,
 
     init : function (){
-      logger.info("Initializing Application");
+      logger.log("Initializing Application");
       this._banner()
         ._configureApp()
         ._setupSockets()
         ._serverStart();
 
-      logger.info("Application Initialized");
+      logger.log("Application Initialized");
 
       return this;
     },
 
     _banner : function() {
-      logger.info("#  ███╗   ██╗███████╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗ ███████╗");
-      logger.info("#  ████╗  ██║██╔════╝██╔═══██╗████╗  ██║██╔═══██╗██╔══██╗██╔════╝");
-      logger.info("#  ██╔██╗ ██║█████╗  ██║   ██║██╔██╗ ██║██║   ██║██║  ██║█████╗  ");
-      logger.info("#  ██║╚██╗██║██╔══╝  ██║   ██║██║╚██╗██║██║   ██║██║  ██║██╔══╝  ");
-      logger.info("#  ██║ ╚████║███████╗╚██████╔╝██║ ╚████║╚██████╔╝██████╔╝███████╗");
-      logger.info("#  ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝");
-      logger.info("#                                                                ");
-      logger.info("#  ██╗   ██╗ ██████╗     ██████╗    ██╗                          ");
-      logger.info("#  ██║   ██║██╔═████╗   ██╔═████╗  ███║                          ");
-      logger.info("#  ██║   ██║██║██╔██║   ██║██╔██║  ╚██║                          ");
-      logger.info("#  ╚██╗ ██╔╝████╔╝██║   ████╔╝██║   ██║                          ");
-      logger.info("#   ╚████╔╝ ╚██████╔╝██╗╚██████╔╝██╗██║                          ");
-      logger.info("#    ╚═══╝   ╚═════╝ ╚═╝ ╚═════╝ ╚═╝╚═╝                          ");
-      logger.info("#                                                                ");
+      logger.log("#  ███╗   ██╗███████╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗ ███████╗");
+      logger.log("#  ████╗  ██║██╔════╝██╔═══██╗████╗  ██║██╔═══██╗██╔══██╗██╔════╝");
+      logger.log("#  ██╔██╗ ██║█████╗  ██║   ██║██╔██╗ ██║██║   ██║██║  ██║█████╗  ");
+      logger.log("#  ██║╚██╗██║██╔══╝  ██║   ██║██║╚██╗██║██║   ██║██║  ██║██╔══╝  ");
+      logger.log("#  ██║ ╚████║███████╗╚██████╔╝██║ ╚████║╚██████╔╝██████╔╝███████╗");
+      logger.log("#  ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝");
+      logger.log("#                                                                ");
+      logger.log("#  ██╗   ██╗ ██████╗     ██████╗    ██╗                          ");
+      logger.log("#  ██║   ██║██╔═████╗   ██╔═████╗  ███║                          ");
+      logger.log("#  ██║   ██║██║██╔██║   ██║██╔██║  ╚██║                          ");
+      logger.log("#  ╚██╗ ██╔╝████╔╝██║   ████╔╝██║   ██║                          ");
+      logger.log("#   ╚████╔╝ ╚██████╔╝██╗╚██████╔╝██╗██║                          ");
+      logger.log("#    ╚═══╝   ╚═════╝ ╚═╝ ╚═════╝ ╚═╝╚═╝                          ");
+      logger.log("#                                                                ");
 
       return this;
     },
@@ -169,7 +169,7 @@ Class('Application')({
       var route;
 
       glob.sync("controllers/*.js").forEach(function(file) {
-        logger.info('Loading ' + file + '...')
+        logger.log('Loading ' + file + '...')
         require('../' + file);
       });
 
@@ -186,5 +186,5 @@ global.application = new Application();
 
 application.loadControllers();
 
-logger.info('Neonode server ready');
-logger.info("Listening on port: " + serverPort.toString());
+logger.log('Neonode server ready');
+logger.log("Listening on port: " + serverPort.toString());
