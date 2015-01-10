@@ -55,36 +55,8 @@ Class('Application')({
       this.app.use(this.morgan('combined' ,{stream: logger.stream}));
 
       // Setup Thulium engine for ExpressJS
-      this.app.engine('html', function(path, options, callback){
-        var fileCache = {};
-
-        var key = path + ':thulium:string';
-
-        if ('function' == typeof options) {
-          callback = options, options = {};
-        }
-
-        options.filename = path;
-
-        var str;
-
-        try {
-          str = options.cache
-            ? fileCache[key] || (fileCache[key] = this.fs.readFileSync(path, 'utf8'))
-            : this.fs.readFileSync(path, 'utf8');
-        } catch (err) {
-          this.fs.readFileSync(err);
-          return;
-        }
-
-        var tm = new Thulium({
-          template : str
-        });
-
-        var rendered = tm.parseSync().renderSync(options);
-
-        callback(null, rendered);
-      });
+      logger.debug("Setting Thulium Engine for Express");
+      this.app.engine('html', this._thuliumEngine.bind(this));
 
       this.app.set('views', 'views');
 
@@ -152,6 +124,39 @@ Class('Application')({
 
     _serverStart : function(){
       this.server.listen(serverPort);
+    },
+
+    _thuliumEngine : function(path, options, callback) {
+      var application = this;
+
+      var fileCache = {};
+
+      var key = path + ':thulium:string';
+
+      if ('function' == typeof options) {
+        callback = options, options = {};
+      }
+
+      options.filename = path;
+
+      var str;
+
+      try {
+        str = options.cache
+          ? fileCache[key] || (fileCache[key] = application.fs.readFileSync(path, 'utf8'))
+          : application.fs.readFileSync(path, 'utf8');
+      } catch (err) {
+        application.fs.readFileSync(err);
+        return;
+      }
+
+      var tm = new Thulium({
+        template : str
+      });
+
+      var rendered = tm.parseSync().renderSync(options);
+
+      callback(null, rendered);
     },
 
     loadControllers : function(){
