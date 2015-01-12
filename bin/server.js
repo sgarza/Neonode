@@ -35,6 +35,7 @@ Class('Application')({
     router            : null,
     controllers       : [],
     models            : [],
+    env               : process.env.NODE_ENV || 'development',
 
     init : function (){
       logger.info("Initializing Application");
