@@ -142,10 +142,10 @@ Class('Application')({
 
       options.filename = path;
 
-      var str;
+      var view;
 
       try {
-        str = options.cache
+        view = options.cache
           ? fileCache[key] || (fileCache[key] = application.fs.readFileSync(path, 'utf8'))
           : application.fs.readFileSync(path, 'utf8');
       } catch (err) {
@@ -153,9 +153,43 @@ Class('Application')({
         return;
       }
 
-      var tm = new Thulium({
-        template : str
-      });
+      if (typeof options.layout === 'undefined') {
+        options.layout = 'application';
+      }
+
+      var tm;
+
+      if (options.layout !== false) {
+        var layoutView;
+
+        var layoutPath = './' + options.settings.views + '/layouts/' + options.layout + '.html';
+
+        var layoutKey = layoutPath + ':thulium:string';
+
+        try {
+          layoutView = options.cache
+            ? fileCache[layoutKey] || (fileCache[layoutKey] = application.fs.readFileSync(layoutPath, 'utf8'))
+            : application.fs.readFileSync(layoutPath, 'utf8');
+        } catch (err) {
+          application.fs.readFileSync(err);
+          return;
+        }
+
+        tm = new Thulium({
+          template : layoutView
+        });
+
+        var partial = new Thulium({
+          template : view
+        });
+
+        options.yield = partial.parseSync().renderSync(options);
+
+      } else {
+        tm = new Thulium({
+          template : view
+        });
+      }
 
       var rendered = tm.parseSync().renderSync(options);
 
