@@ -7,14 +7,17 @@ var serverPort = process.env.PORT || 3000;
 
 var fs = require('fs');
 require('neon');
-require('Thulium'); // Ultra fast templating engine. See https://github.com/escusado/thulium
+require('thulium'); // Ultra fast templating engine. See https://github.com/escusado/thulium
 require('argonjs'); // Async ActiveRecord for ECMAScript https://github.com/azendal/argon
 
 if (!fs.existsSync('./log')) {
     fs.mkdirSync('./log', 0744);
 }
 
-global.logger = require('../lib/logger');
+global.logger   = require('../lib/logger');
+global.async    = require('async');
+
+var bodyParser = require('body-parser');
 
 //Application
 Class('Application')({
@@ -28,6 +31,7 @@ Class('Application')({
     glob              : require('glob'),
     inflection        : require('inflection'),
     busboy            : require('connect-busboy'),
+    bodyParser        : bodyParser,
     cookieParser      : require('cookie-parser'),
     session           : require('express-session'),
     csrf              : require('csurf'),
@@ -55,9 +59,6 @@ Class('Application')({
       this.app = this.express();
       this.server = this.http.createServer(this.app);
 
-      // App Logging
-      this.app.use(this.morgan('combined' ,{stream: logger.stream}));
-
       // Setup Thulium engine for ExpressJS
       logger.debug("Setting Thulium Engine for Express");
       this.app.engine('html', this._thuliumEngine.bind(this));
@@ -75,13 +76,19 @@ Class('Application')({
       });
 
       //Static routes
-      this.app.use('/public', this.express.static('public'));
+      this.app.use('/', this.express.static('public'));
+
+      // App Logging
+      this.app.use(this.morgan('combined' ,{stream: logger.stream}));
 
       // MiddleWares
       logger.debug("Setting up middlewares...");
 
       logger.debug("Setting busboy");
       this.app.use(this.busboy());
+
+      logger.debug("Setting bodyParser");
+      this.app.use(bodyParser.json());
 
       logger.debug("Setting cookieParser");
       this.app.use(this.cookieParser());
