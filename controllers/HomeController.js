@@ -14,6 +14,7 @@ var HomeController = Class('HomeController')({
     },
 
     index : function(req, res) {
+      s
       res.render('home/index.html', {layout : 'application', posts : ["1", "2", "3", "4", "5"]});
     },
 

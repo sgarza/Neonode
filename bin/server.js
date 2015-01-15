@@ -7,6 +7,7 @@ var serverPort = process.env.PORT || 3000;
 
 var fs = require('fs');
 require('neon');
+
 require('thulium'); // Ultra fast templating engine. See https://github.com/escusado/thulium
 require('argonjs'); // Async ActiveRecord for ECMAScript https://github.com/azendal/argon
 
@@ -15,6 +16,8 @@ if (!fs.existsSync('./log')) {
 }
 
 global.logger   = require('../lib/logger');
+require('./../vendor/lithium'); // Error monitoring for neon
+require('./../vendor/LithiumEngine');
 global.async    = require('async');
 
 var bodyParser = require('body-parser');
