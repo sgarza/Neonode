@@ -18,7 +18,7 @@
     "express-session": "^1.9.3",
     "glob": "^4.3.2",
     "inflection": "^1.5.3",
-    "morgan": "^1.5.0",
+    "morgan": "^1.5.1",
     "mysql": "^2.5.4",
     "neon": "~2.0.0",
     "socket.io": "~1.0.6",
