@@ -68,6 +68,8 @@ Class('Application')({
 
       this.app.set('views', 'views');
 
+      this.app.enable("trust proxy");
+
       //neon
       this.app.use('/neon', this.express.static('node_modules/neon'));
 
