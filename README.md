@@ -54,7 +54,7 @@ Models.User = Class(Models,'User').inherits(Model)({
   },
 
   findBy : function(clauses, callback) {
-    // clauses = {name : 'Joe', departmentId : 1}
+    // clauses = {name : "Joe", departmentId : 1}
     // Read knexjs.org documentation for more options.
     application.db('Users')
       .where(clauses)
@@ -259,6 +259,5 @@ var UsersController = Class('UsersController').inherits(RestfulController)({
 module.exports = new UsersController();
 ```
 
-
-[1]: http://knexjs.org/#Migrations
-[2]: http://knexjs.org/
+[1]: http://knexjs.org/
+[2]: http://knexjs.org/#Migrations
