@@ -1,0 +1,39 @@
+var config = {
+  appName : 'Neonode',
+  environment : process.env.NODE_ENV || 'development',
+  logFile : './log/all.log',
+  database : {
+    client      : 'pg', // pg || mysql || sqlite
+    logQuerys   : true,
+    // ***********************
+    // Postgres
+    // ***********************
+    development : "postgres://user:password@localhost/database",
+    production  :  ""
+
+    // ***********************
+    // MySQL
+    // ***********************
+    // developmen : {
+    //   host     : '127.0.0.1',
+    //   user     : 'your_database_user',
+    //   password : 'your_database_password',
+    //   database : 'myapp_test'
+    // }
+    //
+    // ***********************
+    // SQLite
+    // ***********************
+    // development : {
+    //   filename: "./mydb.sqlite"
+    // }
+  },
+  port            : process.env.PORT || 3000,
+  enableLithium   : false,
+  enableHashids   : false, // https://github.com/hashids/
+  enablePassport  : true,
+  sessionSecret   : 'EDIT ME ctYArFqrrXy4snywpApkTcfootxsz9Ko',
+
+}
+
+module.exports = config;
