@@ -42,7 +42,7 @@ Models.User = Class(Models,'User').inherits(Model)({
       },
       length : {
         maximum : 255,
-        tooLong : 'Email can't be more than %{count} characters.'
+        tooLong : "Email can't be more than %{count} characters."
       }
     }
   },
