@@ -1,0 +1,13 @@
+Program:
+  neonode
+
+Description:
+  Generator for Neonode projects
+
+Usage:
+  mg --init <name>...
+  mg -h | --help
+
+Options:
+  -h --help                             Show this screen.
+  --init                                Starts the project creation process.

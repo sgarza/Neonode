@@ -1,10 +1,16 @@
 {
-  "name": "Neonode",
+  "name": "neonode",
   "description": "Neon.js / NodeJS MVC stack for web apps",
   "repository": "https://github.com/sgarza/Neonode",
   "version": "0.0.2",
   "engines": {
-    "node": "0.10.33"
+    "node": ">=0.10.33"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "neonode": "./lib/neonode.js"
   },
   "dependencies": {
     "argonjs": "^1.0.3",
@@ -12,6 +18,7 @@
     "bcrypt": "^0.8.1",
     "body-parser": "^1.12.0",
     "cobalt-log": "git://github.com/sgarza/cobalt",
+    "colors": "^1.0.3",
     "compression-webpack-plugin": "^0.1.2",
     "connect-busboy": "0.0.2",
     "connect-redis": "^2.2.0",
@@ -29,14 +36,19 @@
     "knex": "^0.7.4",
     "less": "^2.4.0",
     "less-loader": "^2.0.0",
+    "mkdirp": "^0.5.0",
     "morgan": "^1.5.1",
     "mysql": "^2.5.4",
+    "ncp": "^2.0.0",
     "neon": "~2.0.0",
+    "nopt": "^3.0.1",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
     "pg": "^4.3.0",
+    "prompt": "^0.2.14",
     "redis": "^0.12.1",
     "req-flash": "0.0.2",
+    "rimraf": "^2.2.8",
     "socket.io": "~1.0.6",
     "source-map": "^0.4.0",
     "style-loader": "^0.8.3",
