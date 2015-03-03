@@ -39,7 +39,7 @@ Edit config.json as needed.
 
 # Database Migrations
 
-Neonode uses [Knex][1] to access databases and you can use it to generate querys and migrate the DB. Read [Knex Migrations][2]
+Neonode uses [Knex][1] to access databases and you can use it to generate queries and migrate the DB. Read [Knex Migrations][2]
 
 # Controllers
 
