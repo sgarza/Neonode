@@ -32,7 +32,9 @@ var config = {
   enableLithium   : false,
   enableHashids   : false, // https://github.com/hashids/
   enablePassport  : true,
+  sessionKey      : 'session',
   sessionSecret   : 'EDIT ME ctYArFqrrXy4snywpApkTcfootxsz9Ko',
+  enableRedis     : false,
   siteUrl : {
     production: '',
     development : 'http://localhost:3000'

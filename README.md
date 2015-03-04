@@ -15,7 +15,7 @@ Fill the prompts and this will create a project in the directory specified
 
     npm install
 
-### Install Redis
+### Install Redis (optional)
 
     brew install redis
 
