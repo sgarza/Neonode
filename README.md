@@ -59,13 +59,18 @@ For Restful and non-Restful controllers run:
 
 ## Credits
 
-Neonode is posible thanks to these wonderful libraries
+Neonode is possible thanks to these wonderful libraries
 
 [Neon][3]
+
 [Thulium][4]
+
 [Lithium][5]
+
 [Argon][6]
+
 [Fuorine][7]
+
 [Cobalt][8]
 
 
