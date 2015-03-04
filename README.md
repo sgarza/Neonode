@@ -26,13 +26,14 @@
 
 Once a new project is created:
 
-    cp config/config-example.json config/config.json
+    cp config/config-example.js config/config.js
 
 Edit config.json as needed.
 
 
 ### Run the server
 
+    redis-server
     webpack -d -w
     node bin/server.js
 

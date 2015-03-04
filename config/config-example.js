@@ -33,7 +33,10 @@ var config = {
   enableHashids   : false, // https://github.com/hashids/
   enablePassport  : true,
   sessionSecret   : 'EDIT ME ctYArFqrrXy4snywpApkTcfootxsz9Ko',
-
+  siteUrl : {
+    production: '',
+    development : 'http://localhost:3000'
+  }
 }
 
 module.exports = config;
