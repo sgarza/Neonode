@@ -5,9 +5,14 @@ Description:
   Generator for Neonode projects
 
 Usage:
-  mg --init <name>...
-  mg -h | --help
+  neonode --init <name>
+  neonode --create model
+  neonode --create controller
+  neonode -h | --help
 
 Options:
   -h --help                             Show this screen.
   --init                                Starts the project creation process.
+  --create                              model || controller
+  --create model                        Starts the model generator
+  --create controller                   Starts the controller generator
