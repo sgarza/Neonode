@@ -2,8 +2,25 @@
   "name": "neonode",
   "description": "Neon.js / NodeJS MVC stack for web apps",
   "repository": "https://github.com/sgarza/Neonode",
-  "version": "0.0.3",
-  "keywords" : ["neon", "mvc", "fullstack", "cli", "frontend", "backend", "stack", "bootstrap"],
+  "version": "1.0.0",
+  "keywords" : [
+    "neon",
+    "mvc",
+    "fullstack",
+    "cli",
+    "frontend",
+    "backend",
+    "stack",
+    "bootstrap",
+    "backend",
+    "orm",
+    "postgres",
+    "mysql",
+    "database",
+    "widget",
+    "full",
+    "generator"
+  ],
   "engines": {
     "node": ">=0.10.33"
   },
