@@ -56,6 +56,9 @@ For Restful and non-Restful controllers run:
 
     neonode --create model
 
+## Contributing and Feature Requests
+
+You **MUST** read [CONTRIBUTING.md](CONTRIBUTING.md) before you start filing a issue or making a Pull Request.
 
 ## Credits
 
