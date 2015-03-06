@@ -1,13 +1,31 @@
-body{
-    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-    color: #333;
-    padding : 10px;
+body {
+  font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
+  color : #333;
 }
 
-.wrapper .fixed {
-  padding : 0 10px 0 0;
+h1 {
+  border-bottom: 1px solid  #CCC;
+  text-align : center;
 }
 
-  .wrapper .fixed img {
-    width : 80px;
-  }
+h1 span {
+  margin : 0 0 0 20px;
+}
+
+.yield {
+  margin : 20px;
+  padding : 20px;
+  font-size : 13px;
+  background : #EEE;
+  border-radius : 6px;
+}
+
+footer {
+  border-top: 1px solid #CCC;
+  text-align: center;
+  font-size : 12px;
+}
+
+footer a {
+  color : #333;
+}

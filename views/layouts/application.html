@@ -11,27 +11,15 @@
 </head>
 
 <body>
-    <div class="unit 2-columns wrapper">
-      <div class="column fixed">
-        <div class="container">
-          <img src="/img/neon-logo.png" alt="" />
-        </div>
-      </div>
-      <div class="column elastic">
-        <div class="container">
-          <h1>Neonode</h1>
-          <h2>v0.0.1</h2>
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="unit">
-      <div class="container">
+    <header>
+        <h1><img src="/img/neon-logo.png" width="80" /><span>It works!</span></h1>
+    </header>
+    <div class="yield">
         <%= yield %>
-      </div>
     </div>
-
-
+    <footer>
+        <p><a href="http://github.com/sgarza/Neonode" target="_blank"><span>Neonode <strong>v1.0.4</strong></span></a></p>
+    </footer>
 </body>
 
 </html>
