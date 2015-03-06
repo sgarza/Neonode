@@ -56,6 +56,10 @@ For Restful and non-Restful controllers run:
 
     neonode --create model
 
+## Examples
+
+* [Authentication, Users Model and Users Restful Controller][9]
+
 ## Contributing and Feature Requests
 
 You **MUST** read [CONTRIBUTING.md](CONTRIBUTING.md) before you start filing a issue or making a Pull Request.
@@ -86,3 +90,4 @@ Neonode is possible thanks to these wonderful libraries
 [6]: https://github.com/sgarza/argon/tree/node-callback-convention
 [7]: https://github.com/freshout-dev/fluorine
 [8]: https://github.com/benbeltran/cobalt
+[9]: https://github.com/sgarza/Neonode/wiki/Authentication-with-Passport,-Users-Model,-Users-Restful-Controller-Example
