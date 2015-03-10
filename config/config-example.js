@@ -4,7 +4,7 @@ var config = {
   logFile : './log/all.log',
   database : {
     client      : 'pg', // pg || mysql || sqlite
-    logQuerys   : true,
+    logQueries  : true,
     // ***********************
     // Postgres
     // ***********************
