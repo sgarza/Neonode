@@ -31,7 +31,7 @@ var config = {
   port            : process.env.PORT || 3000,
   enableLithium   : false,
   enableHashids   : false, // https://github.com/hashids/
-  enablePassport  : true,
+  enablePassport  : false,
   sessionKey      : 'session',
   sessionSecret   : 'EDIT ME ctYArFqrrXy4snywpApkTcfootxsz9Ko',
   enableRedis     : false,
