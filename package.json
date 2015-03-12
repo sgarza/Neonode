@@ -71,6 +71,7 @@
     "source-map": "^0.4.0",
     "style-loader": "^0.8.3",
     "thulium": "^2.0.0",
+    "thulium-express": "^1.0.0",
     "url-loader": "^0.5.5",
     "webpack": "^1.7.2"
   }
