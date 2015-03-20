@@ -1,8 +1,8 @@
 {
   "name": "neonode",
-  "description": "Neon.js / NodeJS MVC stack for web apps",
+  "description": "Neon.js powered MVC Full-Stack development Anti-Framework.",
   "repository": "https://github.com/sgarza/Neonode",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "keywords": [
     "neon",
     "mvc",

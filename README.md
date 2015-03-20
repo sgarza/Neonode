@@ -1,4 +1,4 @@
-Neonode is a [Neon.js][3] powered MVC stack.
+# [Neon.js][3] powered MVC Full-Stack development Anti-Framework.
 
 
 ## Usage
