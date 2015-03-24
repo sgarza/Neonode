@@ -9,6 +9,7 @@
 
 Fill the prompts and this will create a project in the directory specified
 
+
 ## Requirements
 
 ### Install node module dependencies
@@ -26,6 +27,8 @@ Fill the prompts and this will create a project in the directory specified
 
     npm install webpack -g
 
+Neonode will compile the assests in development environment automatically using [webpack-dev-middleware](http://webpack.github.io/docs/webpack-dev-middleware.html). You still have to run __webpack -p__ in a production environment.
+
 ## Setup
 
 Once a new project is created:
@@ -37,10 +40,8 @@ Edit config.json as needed.
 
 ### Run the server
 
-    redis-server
-    webpack -d -w
-    node bin/server.js
-
+    redis-server (optional)
+    npm start
 
 ## Database Migrations
 

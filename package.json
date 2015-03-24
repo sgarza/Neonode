@@ -2,7 +2,7 @@
   "name": "neonode",
   "description": "Neon.js powered MVC Full-Stack development Anti-Framework.",
   "repository": "https://github.com/sgarza/Neonode",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "keywords": [
     "neon",
     "mvc",
@@ -25,7 +25,8 @@
     "node": ">=0.10.33"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/server.js"
   },
   "bin": {
     "neonode": "./lib/neonode.js"
@@ -73,6 +74,7 @@
     "thulium": "^2.0.0",
     "thulium-express": "^1.0.0",
     "url-loader": "^0.5.5",
-    "webpack": "^1.7.2"
+    "webpack": "^1.7.2",
+    "webpack-dev-middleware": "^1.0.11"
   }
 }
