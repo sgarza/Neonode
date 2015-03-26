@@ -1,7 +1,4 @@
 #!/usr/bin/env node
 
-require('./../lib/bootstrap');
+require('neonode-core');
 
-require('./../lib/Application');
-
-application.loadControllers();

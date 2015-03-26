@@ -27,7 +27,15 @@ Fill the prompts and this will create a project in the directory specified
 
     npm install webpack -g
 
-Neonode will compile the assests in development environment automatically using [webpack-dev-middleware](http://webpack.github.io/docs/webpack-dev-middleware.html). You still have to run __webpack -p__ in a production environment.
+To compile assets in dev mode
+
+    webpack -d
+
+To compile assets in production mode
+
+    webpack -p
+
+Go to [Webpack documentation](http://webpack.github.io/docs/)
 
 ## Setup
 
@@ -57,6 +65,10 @@ For Restful and non-Restful controllers run:
 
     neonode --create model
 
+## Middlewares
+
+Middlewares are now located in ./middlewares and they are loaded in filename ASC order for your tweaking or adding pleasure.
+
 ## Examples
 
 * [Authentication, Users Model and Users Restful Controller][9]
@@ -64,6 +76,10 @@ For Restful and non-Restful controllers run:
 ## Contributing and Feature Requests
 
 You **MUST** read [CONTRIBUTING.md](CONTRIBUTING.md) before you start filing a issue or making a Pull Request.
+
+## Troubleshooting
+
+Delete /usr/local/bin/neonode if you have a < 2.0.0 version installed
 
 ## Credits
 
