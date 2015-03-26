@@ -97,6 +97,9 @@ Neonode is possible thanks to these wonderful libraries
 
 [Cobalt][8]
 
+## CHANGELOG
+
+Read [CHANGELOG.md](CHANGELOG.md)
 
 
 [1]: http://knexjs.org/
