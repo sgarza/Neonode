@@ -10,13 +10,13 @@ if (CONFIG.enableRedis) {
 
   var RedisStore = require('connect-redis')(global.expressSession);
 
-  this.redisStore = new RedisStore();
+  var redisStoreInstance = new RedisStore();
 
   var sessionMiddleWare = expressSession({
     resave : false,
     saveUninitialized : true,
     key : CONFIG.sessionKey,
-    store: application.redisStore,
+    store: redisStoreInstance,
     secret: CONFIG.sessionSecret
   });
 

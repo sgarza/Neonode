@@ -2,7 +2,7 @@
   "name": "neonode",
   "description": "Neon.js powered MVC Full-Stack development Anti-Framework.",
   "repository": "https://github.com/sgarza/Neonode",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "keywords": [
     "neon",
     "mvc",
@@ -38,6 +38,7 @@
     "less-loader": "^2.2.0",
     "neonode-core": "^2.0.0",
     "path": "^0.11.14",
+    "redis": "^0.12.1",
     "style-loader": "^0.9.0",
     "url-loader": "^0.5.5",
     "webpack": "^1.7.3"
