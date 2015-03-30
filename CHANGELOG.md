@@ -1,3 +1,10 @@
+## 2015-03-30, Version 2.0.2
+
+- Add NotFound and Error middlewares
+- **Bugfixes**
+     - Add missing dependencies (Neon)
+
+
 ## 2015-03-26, Version 2.0.1
 
 - **Bugfixes**
