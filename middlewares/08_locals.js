@@ -23,7 +23,7 @@ module.exports = function(req, res, next) {
   }
 
   if (CONFIG.enableHashids) {
-    res.locals.hashid = global.hashid;
+    res.locals.hashids = global.hashids;
   }
 
   next();

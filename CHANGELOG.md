@@ -1,3 +1,8 @@
+## 2015-03-30, Version 2.0.3
+
+- **Bugfixes**
+     - Fix hashids typo in 08_locals.js middleware
+
 ## 2015-03-30, Version 2.0.2
 
 - Add NotFound and Error middlewares
