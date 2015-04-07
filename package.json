@@ -46,5 +46,8 @@
   },
   "bin": {
     "neonode": "./node_modules/.bin/neonode"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^1.2.0"
   }
 }
