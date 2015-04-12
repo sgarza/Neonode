@@ -1,5 +1,5 @@
 # [Neon.js][3] powered MVC Full-Stack development Anti-Framework.
-
+[![npm-image](https://img.shields.io/npm/v/neonode.svg?style=flat-square)](https://www.npmjs.com/package/neonode)
 
 ## Usage
 
