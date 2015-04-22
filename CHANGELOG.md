@@ -1,3 +1,11 @@
+## 2015-04-22, Version 2.0.4
+
+- **Updates**
+     - Update Webpack Compression plugin to 0.2.0
+     - Add Webpack autoprefixer-loader
+     - Add npm badge to README
+
+
 ## 2015-03-30, Version 2.0.3
 
 - **Bugfixes**
