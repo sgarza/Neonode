@@ -1,3 +1,10 @@
+## 2015-05-04, Version 2.0.6
+
+- **Updates**
+     - Add Router middleware
+     - Add knex, mysql, pg module to be able tu use knex cli
+
+
 ## 2015-05-04, Version 2.0.5
 
 - **Updates**
