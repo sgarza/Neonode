@@ -1,3 +1,9 @@
+## 2015-05-04, Version 2.0.5
+
+- **Updates**
+     - Update neonode-core to 2.1.0
+
+
 ## 2015-04-22, Version 2.0.4
 
 - **Updates**
