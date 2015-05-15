@@ -1,3 +1,8 @@
+## 2015-05-04, Version 2.0.8
+
+- Updated neonode-core to 2.2.0
+- Use application._serverStart();
+
 ## 2015-05-04, Version 2.0.6
 
 - **Updates**

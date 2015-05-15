@@ -1,4 +1,6 @@
 #!/usr/bin/env node
 
-require('neonode-core');
+var application = require('neonode-core');
+
+application._serverStart();
 
