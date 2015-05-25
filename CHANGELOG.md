@@ -1,3 +1,7 @@
+## 2015-05-25, Version 2.0.9
+
+- Handle NotFoundError in Error Middleware
+
 ## 2015-05-04, Version 2.0.8
 
 - Updated neonode-core to 2.2.0
