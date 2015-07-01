@@ -4,6 +4,7 @@
 - Added lib directory
 - Added lib/boot.js, this loads after core bootstrap and before the Application Class is initialized
 - Move Lithium Engines from core to this package
+- Updated config-example.js
 
 ## 2015-05-25, Version 2.0.9
 
