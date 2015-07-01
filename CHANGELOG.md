@@ -1,3 +1,10 @@
+## 2015-05-25, Version 2.1.0
+
+- Update neonode-core to 2.3.2
+- Added lib directory
+- Added lib/boot.js, this loads after core bootstrap and before the Application Class is initialized
+- Move Lithium Engines from core to this package
+
 ## 2015-05-25, Version 2.0.9
 
 - Handle NotFoundError in Error Middleware
@@ -63,5 +70,3 @@
      - All projects created with Neonode > v2.0.0 can be updated (at least the [neonode-core](https://github.com/sgarza/neonode-core) module)
  - **Webpack**
      - Removed the *webpack-dev-middleware* module as it doesn't render the packed file to disk. We will stick to Webpack CLI for now.
-
-
