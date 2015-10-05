@@ -1,23 +1,25 @@
 // *************************************************************************
 //                          Redis
 // *************************************************************************
-if (CONFIG.enableRedis) {
+if (CONFIG.session !== false) {
   logger.log("Setting session Middlewares and Redis");
 
   var redis = require('redis');
 
   var redisClient = redis.createClient();
 
-  var RedisStore = require('connect-redis')(global.expressSession);
+  var session = require('express-session');
+
+  var RedisStore = require('connect-redis')(session);
 
   var redisStoreInstance = new RedisStore();
 
-  var sessionMiddleWare = expressSession({
+  var sessionMiddleWare = session({
     resave : false,
     saveUninitialized : true,
-    key : CONFIG.sessionKey,
+    key : CONFIG.session.key,
     store: redisStoreInstance,
-    secret: CONFIG.sessionSecret
+    secret: CONFIG.session.secret
   });
 
   module.exports = sessionMiddleWare;

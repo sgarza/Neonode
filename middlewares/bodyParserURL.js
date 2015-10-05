@@ -2,4 +2,4 @@
 //                           Body Parser urlEncoded
 // *************************************************************************
 logger.log("Setting bodyParser URL");
-module.exports = bodyParser.urlencoded({extended: true});
+module.exports = require('body-parser').urlencoded({extended: true});

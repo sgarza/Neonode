@@ -2,4 +2,4 @@
 //                            Cookie Parser
 // *************************************************************************
 logger.log("Setting cookieParser");
-module.exports = cookieParser(CONFIG.sessionSecret);
+module.exports = require('cookie-parser')(CONFIG.session.secret);

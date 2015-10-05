@@ -16,7 +16,7 @@ Fill the prompts and this will create a project in the directory specified
 
     npm install
 
-### Install Redis (optional)
+### Install Redis (optional, only if using sessions)
 
     brew install redis
 
@@ -67,19 +67,13 @@ For Restful and non-Restful controllers run:
 
 ## Middlewares
 
-Middlewares are now located in ./middlewares and they are loaded in filename ASC order for your tweaking or adding pleasure.
+Middlewares are now located in ./middlewares and they are loaded fom the config/middlewares.js registry.
 
-## Examples
-
-* [Authentication, Users Model and Users Restful Controller][9]
 
 ## Contributing and Feature Requests
 
 You **MUST** read [CONTRIBUTING.md](CONTRIBUTING.md) before you start filing a issue or making a Pull Request.
 
-## Troubleshooting
-
-Delete /usr/local/bin/neonode if you have a < 2.0.0 version installed
 
 ## Credits
 
@@ -92,6 +86,8 @@ Neonode is possible thanks to these wonderful libraries
 [Lithium][5]
 
 [Argon][6]
+
+[Krypton][9]
 
 [Fuorine][7]
 
@@ -110,4 +106,4 @@ Read [CHANGELOG.md](CHANGELOG.md)
 [6]: https://github.com/sgarza/argon/tree/node-callback-convention
 [7]: https://github.com/freshout-dev/fluorine
 [8]: https://github.com/benbeltran/cobalt
-[9]: https://github.com/sgarza/Neonode/wiki/Authentication-with-Passport,-Users-Model,-Users-Restful-Controller-Example
+[9]: https://github.com/sgarza/krypton

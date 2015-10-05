@@ -1,3 +1,13 @@
+## 2015-10-05, Version 3.0.0
+ - Update dependencies
+ - Middlewares Registry Config
+ - New Route Mapper DSL
+ - New ACL Middleware
+ - Remove Passport
+ - Remove hashids
+ - Move Middlewares after Controllers load
+ - Use neonode-core 3.0.0 with Krypton Models
+
 ## 2015-07-24, Version 2.1.4
 
 - Update neonode-core to 2.3.6

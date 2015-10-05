@@ -4,39 +4,25 @@ var config = {
   appName : 'Neonode',
   environment : env,
   logFile : './log/' + env + '.log',
-  database : {
-    logQueries  : true,
-
-    development : {
-      client: 'postgresql',
-      connection: {
-        database: 'databaseName',
-        user:     'userName',
-        password: ''
-      },
-      pool: {
-        min: 2,
-        max: 10
-      },
-      migrations: {
-        tableName: 'knex_migrations'
-      },
-      seeds : {
-        directory : './seeds/dev'
-      }
-    },
-  },
   port            : process.env.PORT || 3000,
-  enableLithium   : false,
-  enableHashids   : false, // https://github.com/hashids/
-  enablePassport  : false,
-  sessionKey      : 'session',
-  sessionSecret   : 'EDIT ME ctYArFqrrXy4snywpApkTcfootxsz9Ko',
-  enableRedis     : false,
+
+  // session : false, if you want to disable Redis sessions
+  session       : {
+    key      : 'session',
+    secret   : 'EDIT ME ctYArFqrrXy4snywpApkTcfootxsz9Ko',
+  },
   siteUrl : {
-    production: '',
-    development : 'http://localhost:3000'
+    development : 'http://localhost:3000',
+    staging : '',
+    production: ''
   }
 }
+
+// Run knex init to create the knexfile.js
+config.database        = require('./../knexfile.js');
+
+config.middlewares     = require('./middlewares.js');
+
+config.enableLithium   = false;
 
 module.exports = config;

@@ -1,8 +1,10 @@
 // *************************************************************************
-//                            Passport
+//                          CSRF
 // *************************************************************************
-if (CONFIG.enablePassport) {
-  module.exports = global.passport.initialize();
+logger.log("Setting csrf");
+
+if (CONFIG.session !== false) {
+  module.exports = require('csurf')();
 } else {
   module.exports = function(req, res, next) {
     next();
