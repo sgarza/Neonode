@@ -6,8 +6,8 @@ var config = {
   logFile : './log/' + env + '.log',
   port            : process.env.PORT || 3000,
 
-  // session : false, if you want to disable Redis sessions
-  session       : {
+  // sessions : false, if you want to disable Redis sessions
+  sessions       : {
     key      : 'session',
     secret   : 'EDIT ME ctYArFqrrXy4snywpApkTcfootxsz9Ko',
   },

@@ -3,7 +3,7 @@
 // *************************************************************************
 logger.log("Setting csrf");
 
-if (CONFIG.session !== false) {
+if (CONFIG.sessions !== false) {
   module.exports = require('csurf')();
 } else {
   module.exports = function(req, res, next) {

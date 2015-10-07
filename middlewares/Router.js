@@ -12,7 +12,6 @@ routeMapper.routes.forEach(function(route) {
   var verbs      = route.verb();
 
   verbs.forEach(function(verb) {
-    debugger;
     logger.info(verb + ' ' + route.path + ' ' + controller + '#' + action);
     router.route(route.path)[verb](application.controllers[controller][action]);
   });

@@ -1,7 +1,7 @@
 // *************************************************************************
 //                          Redis
 // *************************************************************************
-if (CONFIG.session !== false) {
+if (CONFIG.sessions !== false) {
   logger.log("Setting session Middlewares and Redis");
 
   var redis = require('redis');
