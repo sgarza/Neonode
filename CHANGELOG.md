@@ -1,3 +1,6 @@
+## 2015-10-05, Version 3.0.2
+ - Add support for beforeActions in controllers
+
 ## 2015-10-05, Version 3.0.0
  - Update dependencies
  - Middlewares Registry Config

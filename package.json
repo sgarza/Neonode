@@ -2,7 +2,7 @@
   "name": "neonode",
   "description": "Neon.js powered MVC Full-Stack development Anti-Framework.",
   "repository": "https://github.com/sgarza/Neonode",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "keywords": [
     "neon",
     "mvc",

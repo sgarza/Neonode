@@ -13,7 +13,29 @@ routeMapper.routes.forEach(function(route) {
 
   verbs.forEach(function(verb) {
     logger.info(verb + ' ' + route.path + ' ' + controller + '#' + action);
-    router.route(route.path)[verb](application.controllers[controller][action]);
+
+    var controllerMethod = application.controllers[controller][action];
+    var beforeActions    = application.controllers[controller].constructor.beforeActions;
+
+    var args = [];
+
+    if (beforeActions.length > 0) {
+      var filters = beforeActions.filter(function(item) {
+          if (item.actions.indexOf(action) !== -1) {
+              return true;
+          }
+      }).map(function(item) {
+          return item.before;
+      });
+
+      filters.forEach(function(filter) {
+        args.push(application.controllers[controller][filter]);
+      });
+    }
+
+    args.push(controllerMethod);
+
+    router.route(route.path)[verb](args);
   });
 });
 
