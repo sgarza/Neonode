@@ -1,3 +1,8 @@
+## 2015-11-04, Version 3.0.3
+ - Fix a typo in redis middleware
+ - Remove validate library from application.js and vendor
+ - Add knex to local modules
+
 ## 2015-10-05, Version 3.0.2
  - Add support for beforeActions in controllers
 

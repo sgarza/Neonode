@@ -7,8 +7,4 @@ window.$ = jQuery;
 
 require('./vendor/Widget.js');
 
-window.validate = require('validate');
-
 require('./../css/style.css');
-
-

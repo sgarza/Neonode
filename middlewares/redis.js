@@ -17,9 +17,9 @@ if (CONFIG.sessions !== false) {
   var sessionMiddleWare = session({
     resave : false,
     saveUninitialized : true,
-    key : CONFIG.session.key,
+    key : CONFIG.sessions.key,
     store: redisStoreInstance,
-    secret: CONFIG.session.secret
+    secret: CONFIG.sessions.secret
   });
 
   module.exports = sessionMiddleWare;
