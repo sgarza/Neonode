@@ -1,3 +1,6 @@
+## 2015-11-04, Version 3.0.4
+ - Bump core version
+
 ## 2015-11-04, Version 3.0.3
  - Fix a typo in redis middleware
  - Remove validate library from application.js and vendor
