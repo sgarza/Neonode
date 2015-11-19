@@ -21,15 +21,21 @@ routeMapper.routes.forEach(function(route) {
 
     if (beforeActions.length > 0) {
       var filters = beforeActions.filter(function(item) {
-          if (item.actions.indexOf(action) !== -1) {
-              return true;
-          }
+        if (item.actions.indexOf(action) !== -1) {
+          return true;
+        }
       }).map(function(item) {
-          return item.before;
-      });
+        return item.before;
+      })[0];
 
       filters.forEach(function(filter) {
-        args.push(application.controllers[controller][filter]);
+        if (_.isString(filter)) {
+          args.push(application.controllers[controller][filter]);
+        } else if (_.isFunction(filter)) {
+          args.push(filter);
+        } else {
+          throw new Error('Invalid before filter in controller ' + controller);
+        }
       });
     }
 
