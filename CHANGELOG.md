@@ -1,5 +1,7 @@
-## 2015-11-04, Version 3.0.4
- - Bump core version
+## 2015-11-19, Version 3.0.4
+- Fix CSFError middleware
+- Handle ForbiddenError in Error middleware
+- Allow Controllers beforeActions.before array to contain functions
 
 ## 2015-11-04, Version 3.0.3
  - Fix a typo in redis middleware
