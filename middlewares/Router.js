@@ -1,5 +1,4 @@
 var _      = require('lodash');
-require('lodash-inflection');
 
 var routeMapper = require('./../config/routeMapper.js');
 
