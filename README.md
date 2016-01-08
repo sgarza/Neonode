@@ -1,3 +1,11 @@
+# DEPRECATED (Will no longer maintian)
+
+Use Yeoman [Neonode Generator](https://www.npmjs.com/package/generator-neonode)
+
+```
+yo neonode
+```
+
 # [Neon.js][3] powered MVC Full-Stack development Anti-Framework.
 [![npm-image](https://img.shields.io/npm/v/neonode.svg?style=flat-square)](https://www.npmjs.com/package/neonode)
 
